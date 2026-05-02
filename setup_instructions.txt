@@ -1,0 +1,50 @@
+========================================================================
+EC6301 MINI PROJECT: INTELLIGENT TRAFFIC LIGHT CONTROL SETUP
+University of Ruhuna - Faculty of Engineering
+========================================================================
+
+1. INSTALLATION (DRIVE D: SETUP)
+---------------------------------
+If your C: drive is full, follow these steps to install on D:
+
+A. Download SUMO: 
+   - Get the .msi from https://sumo.dlr.de/docs/Downloads.php
+B. Install: 
+   - Change path to D:\Eclipse\Sumo during installation.
+C. Environment Variables:
+   - Create a New System Variable:
+     Name: SUMO_HOME
+     Value: D:\Eclipse\Sumo
+   - Edit System 'Path' variable and add:
+     D:\Eclipse\Sumo\bin
+
+2. PYTHON LIBRARIES
+--------------------
+Run this command in your terminal:
+pip install traci sumolib torch numpy matplotlib
+
+3. NETWORK GENERATION (SRI LANKA LEFT-HAND TRAFFIC)
+---------------------------------------------------
+Run this command once to build your road network properly:
+netconvert --node-files=intersection.nod.xml --edge-files=intersection.edg.xml --output-file=intersection.net.xml --lefthand
+
+4. RUNNING THE PROJECT
+-----------------------
+A. Launch the simulation and data extraction:
+   python runner.py
+
+B. In SUMO-GUI:
+   - Adjust the 'Delay (ms)' slider to 50 or 100 to see cars moving.
+   - Click the 'Play' button.
+
+5. PROJECT SPECS (FOR THE TEAM)
+--------------------------------
+- State Vector: 37 dimensions (Lane Count, Queue, Wait Time for 12 lanes + Phase).
+- Action Space: 4 Actions (N-S Green, E-W Green, N-S Yellow, E-W Yellow).
+- Reward: Minimizing total waiting time and queue length across all lanes.
+
+========================================================================
+Files to keep: 
+intersection.nod.xml, intersection.edg.xml, simulation.sumocfg, 
+runner.py, model.py, setup_instructions.txt
+========================================================================
