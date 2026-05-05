@@ -1,4 +1,5 @@
 <routes>
+<<<<<<< Updated upstream
     <!-- Define a standard passenger car -->
     <vType id="car" accel="2.6" decel="4.5" sigma="0.5" length="5.0" minGap="2.5" maxSpeed="13.89" guiShape="passenger"/>
 
@@ -14,4 +15,36 @@
     <flow id="flow_R2L" type="car" route="R2L" begin="0" end="3600" vehsPerHour="400"/>
     <flow id="flow_T2B" type="car" route="T2B" begin="0" end="3600" vehsPerHour="300"/>
     <flow id="flow_B2T" type="car" route="B2T" begin="0" end="3600" vehsPerHour="300"/>
+=======
+    <!-- 1. Define the Vehicle Type -->
+    <vType id="car" accel="2.6" decel="4.5" sigma="0.5" length="5.0" minGap="2.5" maxSpeed="13.89" guiShape="passenger"/>
+
+    <!-- 2. Define Routes (Straight, Left, Right) -->
+    <!-- From South (B2C) -->
+    <route id="s_straight" edges="B2C C2T"/>
+    <route id="s_left" edges="B2C C2L"/>
+    <route id="s_right" edges="B2C C2R"/>
+
+    <!-- From North (T2C) -->
+    <route id="n_straight" edges="T2C C2B"/>
+    <route id="n_left" edges="T2C C2R"/>
+    <route id="n_right" edges="T2C C2L"/>
+
+    <!-- From West (L2C) -->
+    <route id="w_straight" edges="L2C C2R"/>
+    <route id="w_left" edges="L2C C2B"/>
+    <route id="w_right" edges="L2C C2T"/>
+
+    <!-- From East (R2C) -->
+    <route id="e_straight" edges="R2C C2L"/>
+    <route id="e_left" edges="R2C C2T"/>
+    <route id="e_right" edges="R2C C2B"/>
+
+    <!-- 3. Define Traffic Flows (Scenario: Off-Peak) -->
+    <!-- Member 1 can increase vehsPerHour for 'Peak' scenario later -->
+    <flow id="flow_s" type="car" route="s_straight" begin="0" end="3600" vehsPerHour="300"/>
+    <flow id="flow_n" type="car" route="n_straight" begin="0" end="3600" vehsPerHour="300"/>
+    <flow id="flow_w" type="car" route="w_straight" begin="0" end="3600" vehsPerHour="200"/>
+    <flow id="flow_e" type="car" route="e_straight" begin="0" end="3600" vehsPerHour="200"/>
+>>>>>>> Stashed changes
 </routes>
