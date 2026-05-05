@@ -1,17 +1,18 @@
 <routes>
-    <!-- Define a standard passenger car -->
     <vType id="car" accel="2.6" decel="4.5" sigma="0.5" length="5.0" minGap="2.5" maxSpeed="13.89" guiShape="passenger"/>
 
-    <!-- Define the paths -->
-    <route id="L2R" edges="L2C C2R"/>
-    <route id="R2L" edges="R2C C2L"/>
-    <route id="T2B" edges="T2C C2B"/>
-    <route id="B2T" edges="B2C C2T"/>
+    <!-- Routes including Left and Right turns -->
+    <!-- Format: edges="Source To_Center Center_To_Destination" -->
+    <route id="s_to_n" edges="B2C C2T"/> <!-- Straight -->
+    <route id="s_to_w" edges="B2C C2L"/> <!-- Left Turn -->
+    <route id="s_to_e" edges="B2C C2R"/> <!-- Right Turn -->
 
-    <!-- Create flows (Total vehicles per hour) -->
-    <!-- This simulates a 'Medium' density scenario -->
-    <flow id="flow_L2R" type="car" route="L2R" begin="0" end="3600" vehsPerHour="400"/>
-    <flow id="flow_R2L" type="car" route="R2L" begin="0" end="3600" vehsPerHour="400"/>
-    <flow id="flow_T2B" type="car" route="T2B" begin="0" end="3600" vehsPerHour="300"/>
-    <flow id="flow_B2T" type="car" route="B2T" begin="0" end="3600" vehsPerHour="300"/>
+    <route id="n_to_s" edges="T2C C2B"/> <!-- Straight -->
+    <route id="n_to_e" edges="T2C C2R"/> <!-- Left Turn -->
+    <route id="n_to_w" edges="T2C C2L"/> <!-- Right Turn -->
+
+    <!-- Flows: Member 1 can now distribute traffic across these routes -->
+    <flow id="f_sn" type="car" route="s_to_n" begin="0" end="3600" vehsPerHour="400"/>
+    <flow id="f_sw" type="car" route="s_to_w" begin="0" end="3600" vehsPerHour="100"/>
+    <flow id="f_se" type="car" route="s_to_e" begin="0" end="3600" vehsPerHour="100"/>
 </routes>
