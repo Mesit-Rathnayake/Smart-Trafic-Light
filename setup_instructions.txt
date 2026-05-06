@@ -20,31 +20,50 @@ C. Environment Variables:
 
 2. PYTHON LIBRARIES
 --------------------
-Run this command in your terminal:
-pip install traci sumolib torch numpy matplotlib
+Run this command in your terminal to install the ML and SUMO libraries. 
+*Note: The --no-cache-dir flag is crucial to prevent PyTorch from filling up your C: drive during the download.*
+
+pip install torch traci sumolib numpy matplotlib --no-cache-dir
 
 3. NETWORK GENERATION (SRI LANKA LEFT-HAND TRAFFIC)
 ---------------------------------------------------
-Run this command once to build your road network properly:
+If the network files are missing, run this command once to build your road network:
 netconvert --node-files=intersection.nod.xml --edge-files=intersection.edg.xml --output-file=intersection.net.xml --lefthand
 
-4. RUNNING THE PROJECT
------------------------
-A. Launch the simulation and data extraction:
-   python runner.py
+4. RUNNING THE PROJECT (TESTING & EVALUATION WORKFLOW)
+-------------------------------------------------------
+Ensure you have pulled the latest code and are on the correct testing branch:
+git checkout test-training-loop
 
-B. In SUMO-GUI:
-   - Adjust the 'Delay (ms)' slider to 50 or 100 to see cars moving.
-   - Click the 'Play' button.
+Step A: Select the Traffic Scenario
+- Open `simulation.sumocfg` in VS Code.
+- Find the `<route-files value="..."/>` line.
+- Change it to "peak.rou.xml" or "offpeak.rou.xml" depending on your testing assignment.
 
-5. PROJECT SPECS (FOR THE TEAM)
+Step B: Train the AI Brain
+- Run: python runner.py
+- The simulation will start automatically. You can adjust the 'Delay (ms)' slider to watch it learn.
+- It will run for 3600 simulated seconds and save the weights to `trained_brain.pth`.
+
+Step C: Evaluate the AI
+- Run: python test_model.py
+- This runs the simulation using ONLY the trained neural network (no random guessing). 
+- Write down the "Total Accumulated Waiting Time" printed at the end.
+
+Step D: Run the Baseline Comparison
+- Run: python baseline.py
+- This runs the simulation using a standard, fixed-time traffic light.
+- Compare this number to the AI's time to calculate the percentage improvement.
+
+5. PROJECT SPECS & ARCHITECTURE
 --------------------------------
-- State Vector: 37 dimensions (Lane Count, Queue, Wait Time for 12 lanes + Phase).
-- Action Space: 4 Actions (N-S Green, E-W Green, N-S Yellow, E-W Yellow).
-- Reward: Minimizing total waiting time and queue length across all lanes.
+- State Vector: 37 dimensions (Vehicle Count, Halting Queue, Wait Time for 12 incoming lanes + Current Phase).
+- Action Space: 4 Actions (Phases 0, 1, 2, 3).
+- Deep Q-Network: 37 Input -> 128 Hidden (ReLU) -> 64 Hidden (ReLU) -> 4 Output.
+- Reward Function: Minimizing total waiting time and queue length across all lanes.
 
 ========================================================================
-Files to keep: 
-intersection.nod.xml, intersection.edg.xml, simulation.sumocfg, 
-runner.py, model.py, setup_instructions.txt
+Core Files: 
+intersection.net.xml, simulation.sumocfg, peak.rou.xml, offpeak.rou.xml,
+model.py, runner.py, test_model.py, baseline.py, trained_brain.pth
 ========================================================================
