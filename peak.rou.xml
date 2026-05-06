@@ -2,7 +2,7 @@
     <!-- 1. Define the Vehicle Type -->
     <vType id="car" accel="2.6" decel="4.5" sigma="0.5" length="5.0" minGap="2.5" maxSpeed="13.89" guiShape="passenger"/>
 
-    <!-- 2. Define Routes (Straight, Left, Right) -->
+    <!-- 2. Define Routes -->
     <!-- From South (B2C) -->
     <route id="s_straight" edges="B2C C2T"/>
     <route id="s_left" edges="B2C C2L"/>
@@ -23,10 +23,22 @@
     <route id="e_left" edges="R2C C2T"/>
     <route id="e_right" edges="R2C C2B"/>
 
-    <!-- 3. Define Traffic Flows (Scenario: Off-Peak) -->
-    <!-- Member 1 can increase vehsPerHour for 'Peak' scenario later -->
-    <flow id="flow_s" type="car" route="s_straight" begin="0" end="3600" vehsPerHour="800"/>
-    <flow id="flow_n" type="car" route="n_straight" begin="0" end="3600" vehsPerHour="800"/>
-    <flow id="flow_w" type="car" route="w_straight" begin="0" end="3600" vehsPerHour="600"/>
-    <flow id="flow_e" type="car" route="e_straight" begin="0" end="3600" vehsPerHour="600"/>
+    <!-- 3. Traffic Flows (Scenario: PEAK - High Density with Turns) -->
+    <!-- South & North: ~800 total per direction -->
+    <flow id="flow_s_str" type="car" route="s_straight" begin="0" end="3600" vehsPerHour="550"/>
+    <flow id="flow_s_lft" type="car" route="s_left" begin="0" end="3600" vehsPerHour="125"/>
+    <flow id="flow_s_rgt" type="car" route="s_right" begin="0" end="3600" vehsPerHour="125"/>
+    
+    <flow id="flow_n_str" type="car" route="n_straight" begin="0" end="3600" vehsPerHour="550"/>
+    <flow id="flow_n_lft" type="car" route="n_left" begin="0" end="3600" vehsPerHour="125"/>
+    <flow id="flow_n_rgt" type="car" route="n_right" begin="0" end="3600" vehsPerHour="125"/>
+
+    <!-- West & East: ~600 total per direction -->
+    <flow id="flow_w_str" type="car" route="w_straight" begin="0" end="3600" vehsPerHour="400"/>
+    <flow id="flow_w_lft" type="car" route="w_left" begin="0" end="3600" vehsPerHour="100"/>
+    <flow id="flow_w_rgt" type="car" route="w_right" begin="0" end="3600" vehsPerHour="100"/>
+
+    <flow id="flow_e_str" type="car" route="e_straight" begin="0" end="3600" vehsPerHour="400"/>
+    <flow id="flow_e_lft" type="car" route="e_left" begin="0" end="3600" vehsPerHour="100"/>
+    <flow id="flow_e_rgt" type="car" route="e_right" begin="0" end="3600" vehsPerHour="100"/>
 </routes>
