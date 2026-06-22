@@ -1,0 +1,19 @@
+<routes>
+    <vType id="car" accel="2.6" decel="4.5" sigma="0.5" length="5" minGap="2.5" maxSpeed="15.0" />
+
+    <!-- Define the possible paths through the T-Junction -->
+    <route id="bottom_to_left" edges="B2C C2L"/>
+    <route id="bottom_to_right" edges="B2C C2R"/>
+    <route id="left_to_right" edges="L2C C2R"/>
+    <route id="left_to_bottom" edges="L2C C2B"/>
+    <route id="right_to_left" edges="R2C C2L"/>
+    <route id="right_to_bottom" edges="R2C C2B"/>
+
+    <!-- Generate stochastic peak traffic -->
+    <flow id="flow_B2L" route="bottom_to_left" begin="0" end="3600" probability="0.15" type="car"/>
+    <flow id="flow_B2R" route="bottom_to_right" begin="0" end="3600" probability="0.15" type="car"/>
+    <flow id="flow_L2R" route="left_to_right" begin="0" end="3600" probability="0.25" type="car"/>
+    <flow id="flow_L2B" route="left_to_bottom" begin="0" end="3600" probability="0.15" type="car"/>
+    <flow id="flow_R2L" route="right_to_left" begin="0" end="3600" probability="0.25" type="car"/>
+    <flow id="flow_R2B" route="right_to_bottom" begin="0" end="3600" probability="0.15" type="car"/>
+</routes>

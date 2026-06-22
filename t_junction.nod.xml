@@ -1,0 +1,9 @@
+<nodes>
+    <!-- The central intersection with a traffic light -->
+    <node id="center" x="0.0" y="0.0" type="traffic_light"/>
+    
+    <!-- The three ends of the T-Junction -->
+    <node id="bottom" x="0.0" y="-200.0" type="priority"/>
+    <node id="left" x="-200.0" y="0.0" type="priority"/>
+    <node id="right" x="200.0" y="0.0" type="priority"/>
+</nodes>

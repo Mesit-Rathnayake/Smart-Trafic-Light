@@ -1,0 +1,11 @@
+<edges>
+    <!-- Incoming roads to the center (3 lanes each) -->
+    <edge id="B2C" from="bottom" to="center" numLanes="3" speed="15.0" priority="2"/>
+    <edge id="L2C" from="left" to="center" numLanes="3" speed="15.0" priority="2"/>
+    <edge id="R2C" from="right" to="center" numLanes="3" speed="15.0" priority="2"/>
+
+    <!-- Outgoing roads away from the center (3 lanes each) -->
+    <edge id="C2B" from="center" to="bottom" numLanes="3" speed="15.0" priority="1"/>
+    <edge id="C2L" from="center" to="left" numLanes="3" speed="15.0" priority="1"/>
+    <edge id="C2R" from="center" to="right" numLanes="3" speed="15.0" priority="1"/>
+</edges>
