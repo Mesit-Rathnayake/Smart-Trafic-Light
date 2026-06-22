@@ -1,7 +1,7 @@
 <configuration>
     <input>
         <net-file value="intersection.net.xml"/>
-        <!-- Change this value to switch between peak and off-peak -->
-        <route-files value="peak.rou.xml"/> 
+        <!-- Change this value to switch between peak and offpeak -->
+        <route-files value="offpeak.rou.xml"/> 
     </input>
 </configuration>
